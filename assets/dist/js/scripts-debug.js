@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 var getPositionInParent = function getPositionInParent(element) {
   var _siblings = element.parentNode.parentNode.childNodes,
@@ -10,7 +10,7 @@ var getPositionInParent = function getPositionInParent(element) {
   // Get index within siblings
   var index = -1;
   for (var _i = 0; _i < siblings.length; _i++) {
-    if (siblings[_i].getAttribute('data-stack-order') == element.parentNode.getAttribute('data-stack-order')) {
+    if (siblings[_i] === element.parentNode) {
       index = _i;
       break;
     }
@@ -45,6 +45,10 @@ var hoverReact = function hoverReact(_this_) {
         */
         // Resize element
         // resizeElement(_this_, _this_.elements[i]);
+
+        /*
+        NOTE: Attaching listeners to the image as their parent's boundaries could be far beyond them
+        */
 
         // Hover
         _this_.elements[i].getElementsByTagName('img')[0].addEventListener('mouseover', function (evt) {
@@ -81,12 +85,21 @@ var reorder = function reorder(_this_) {
   var items = Array.prototype.slice.call(_this_.elements);
 
   items.sort(function (a, b) {
-    return a.getAttribute('data-stack-order').localeCompare(b.getAttribute('data-stack-order'));
+    // If item has no data-stack-order just leave in place
+    var aO = a.getAttribute('data-stack-order');
+    var bO = b.getAttribute('data-stack-order');
+
+    if (aO === null) aO = getPositionInParent(a.getElementsByTagName('img')[0]);
+
+    if (bO === null) bO = getPositionInParent(b.getElementsByTagName('img')[0]);
+
+    return aO > bO;
   });
 
   // reatach the sorted elements
+  var parent;
   for (var i = 0, len = items.length; i < len; i++) {
-    var parent = items[i].parentNode;
+    parent = items[i].parentNode;
     var detatchedItem = parent.removeChild(items[i]);
     parent.appendChild(detatchedItem);
   }
@@ -189,7 +202,7 @@ var Stackery = function Stackery(el) {
     maxWidth: window.innerWidth / 2,
     topZIndex: 0,
     initTop: 0, // Rough idea to keep the first element from overflowing the top of the viewport
-    mages: []
+    images: []
   };
 
   // Att stacks

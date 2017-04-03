@@ -9,7 +9,7 @@ const getPositionInParent = (element) => {
   // Get index within siblings
   let index = -1;
   for( let i = 0; i < siblings.length; i++ ){
-    if( siblings[i].getAttribute('data-stack-order') == element.parentNode.getAttribute('data-stack-order') ){
+    if( siblings[i] === element.parentNode ){
       index = i;
       break;
     }

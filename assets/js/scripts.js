@@ -9,7 +9,7 @@ const Stackery = (el) => {
     maxWidth      : window.innerWidth / 2,
     topZIndex     : 0,
     initTop       : 0, // Rough idea to keep the first element from overflowing the top of the viewport
-    mages         : []
+    images         : []
   }
 
   // Att stacks

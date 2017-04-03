@@ -6,6 +6,10 @@ const hoverReact = (_this_) => {
     // Resize element
     // resizeElement(_this_, _this_.elements[i]);
 
+    /*
+    NOTE: Attaching listeners to the image as their parent's boundaries could be far beyond them
+    */
+
     // Hover
     _this_.elements[i].getElementsByTagName('img')[0].addEventListener('mouseover',function(evt){
         spaceout(_this_,evt);
