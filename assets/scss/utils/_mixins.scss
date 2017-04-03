@@ -1,0 +1,99 @@
+/* Flexbox */
+@mixin flex(){
+  box-sizing: border-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  -webkit-flex: 0 1 auto;
+  -ms-flex: 0 1 auto;
+  -webkit-box-flex: 0;
+  flex: 0 1 auto;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+/* Center content */
+@mixin flexCenter(){
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Middle position content */
+@mixin flexMiddle(){
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  -o-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin transition($property, $speed) {
+  -webkit-transition: $property $speed ease-in-out;
+  -moz-transition: $property $speed ease-in-out;
+  -ms-transition: $property $speed ease-in-out;
+  -o-transition: $property $speed ease-in-out;
+  transition: $property $speed ease-in-out;
+}
+@mixin transition-delay($speed) {
+  -webkit-transition-delay:$speed;
+  -moz-transition-delay:$speed;
+  -ms-transition-delay:$speed;
+  -o-transition-delay:$speed;
+  transition:$speed;
+}
+
+@mixin rotate($deg) {
+  -webkit-transform: rotate($deg);
+  -ms-transform: rotate($deg);
+  transform: rotate($deg);
+}
+
+@mixin twoD(){
+  -webkit-transform: rotate3d($threedx, $threedy, $threedz, $twoda);
+  -ms-transform: rotate3d($threedx, $threedy, $threedz, $twoda);
+  transform: rotate3d($threedx, $threedy, $threedz, $twoda);
+
+  /*-webkit-transform: rotateX(60deg) rotateZ(-50deg);
+  -ms-transform: rotateX(60deg) rotateZ(-50deg);
+  transform: rotateX(60deg) rotateZ(-50deg);*/
+}
+
+@mixin threeD(){
+  -webkit-transform: rotate3d($threedx, $threedy, $threedz, $threeda);
+  -ms-transform: rotate3d($threedx, $threedy, $threedz, $threeda);
+  transform: rotate3d($threedx, $threedy, $threedz, $threeda);
+
+  /*-webkit-transform: rotateX(60deg) rotateZ(-50deg);
+  -ms-transform: rotateX(60deg) rotateZ(-50deg);
+  transform: rotateX(60deg) rotateZ(-50deg);*/
+}
+
+@mixin vendor-prefix-mixin($name, $argument) {
+  -webkit-#{$name}: #{$argument};
+  -moz-#{$name}: #{$argument};
+  -ms-#{$name}: #{$argument};
+  -o-#{$name}: #{$argument};
+  #{$name}: #{$argument};
+}
+
+@mixin translate( $x, $y ){
+  -ms-transform: translate($x, $y);
+  -webkit-transform: translate($x, $y);
+  transform: translate($x, $y);
+}

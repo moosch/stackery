@@ -1,0 +1,49 @@
+/*
+NOTE: We can't access DOM element attributes to reorder z-index with 
+selectors (or we would be counting forever), so lets hide everything 
+and allow JS to reshuffle if needed
+*/
+
+.stackery {
+  position: relative;
+  max-width:100%;
+
+  opacity: 0;
+  @include transition(opacity, 0.3s);
+
+  &.ready {
+    opacity: 1;
+  }
+
+  .stackery--stack {
+    @include flex();
+    @include flexCenter();
+    @include flexMiddle();
+
+    max-width:100%;
+    position: absolute;
+    left: 0;
+    top:0;
+    right:0;
+    bottom:0;
+    margin: 0 auto;
+
+    @include transition(all, 0.4s);
+    @include threeD();
+
+    &.focussed {
+        position:fixed;
+        @include twoD();
+        top:0 !important;
+        bottom: 0;
+        left:0;
+        right:0;
+    }
+
+    img {
+      max-width:100%;
+      height:auto;
+    }
+
+  }
+}
